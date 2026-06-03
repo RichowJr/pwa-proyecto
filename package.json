@@ -1,0 +1,12 @@
+{
+  "name": "laboratorio-1",
+  "packageManager": "yarn@4.15.0",
+  "scripts": {
+    "saludo": "echo Hola desde el script",
+    "info-node": "node --version",
+    "limpiar": "echo Limpiando el proyecto..."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}
