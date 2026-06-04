@@ -1,27 +1,16 @@
-import { useState } from 'react'
 import './App.css'
+import Laboratorio2 from './laboratorios/Lab2'
+// import Laboratorio3 from './laboratorios/Lab3'
+// import Laboratorio4 from './laboratorios/Lab4'
+// import Laboratorio5 from './laboratorios/Lab5'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="app">
-      <header>
-        <h1>🚀 PWA Proyecto - Laboratorio 1</h1>
-      </header>
-      <main>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            Count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test HMR
-          </p>
-        </div>
-      </main>
-      <footer>
-        <p>Click on the button to test your first interactive component</p>
-      </footer>
+      <Laboratorio2 />
+      {/* <Laboratorio3 /> */}
+      {/* <Laboratorio4 /> */}
+      {/* <Laboratorio5 /> */}
     </div>
   )
 }
