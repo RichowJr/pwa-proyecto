@@ -2,11 +2,19 @@
   "name": "laboratorio-1",
   "packageManager": "yarn@4.15.0",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
     "saludo": "echo Hola desde el script",
     "info-node": "node --version",
     "limpiar": "echo Limpiando el proyecto..."
   },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "prettier": "^3.8.3"
+    "@vitejs/plugin-react": "^4.0.0",
+    "prettier": "^3.8.3",
+    "vite": "^4.3.0"
   }
 }
