@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function BotonAccion({ texto, variante = 'primario', disabled = false, onClick }) {
+export default function BotonAccion({ texto, variante = 'primario', disabled = false, onClick, type = 'button' }) {
   const className = `boton-accion boton-${variante}`
 
   return (
-    <button onClick={onClick} disabled={disabled} className={className}>
+    <button type={type} onClick={onClick} disabled={disabled} className={className}>
       {texto}
     </button>
   )

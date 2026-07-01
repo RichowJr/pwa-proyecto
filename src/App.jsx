@@ -1,52 +1,30 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
-import Home from './pages/Home'
-import Laboratorio2 from './laboratorios/Lab2'
-import Laboratorio3 from './laboratorios/Lab3'
-import Laboratorio4 from './laboratorios/Lab4'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { NotasProvider } from './context/NotasContext'
+import Layout from './components/Layout'
+import Inicio from './pages/Inicio'
+import Notas from './pages/Notas'
+import NuevaNota from './pages/NuevaNota'
+import DetalleNota from './pages/DetalleNota'
+import EditarNota from './pages/EditarNota'
+import NoEncontrada from './pages/NoEncontrada'
 
 function App() {
   return (
-    <BrowserRouter>
-            <div className="app">
-              <header className="app-header">
-                <div className="header-inner">
-                  <div>
-                    <h1 className="app-title">pwa-proyecto</h1>
-                    <p className="app-subtitle">Ejercicios de React organizados por laboratorios</p>
-                  </div>
-                  <nav className="app-nav">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                      Inicio
-                    </NavLink>
-                    <NavLink to="/lab2" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                      Lab 2
-                    </NavLink>
-                    <NavLink to="/lab3" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                      Lab 3
-                    </NavLink>
-                    <NavLink to="/lab4" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                      Lab 4
-                    </NavLink>
-                  </nav>
-                </div>
-              </header>
-
-              <main className="app-main">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/lab2" element={<Laboratorio2 />} />
-                  <Route path="/lab3" element={<Laboratorio3 />} />
-                  <Route path="/lab4" element={<Laboratorio4 />} />
-                  <Route path="*" element={<Home />} />
-                </Routes>
-              </main>
-
-              <footer className="app-footer">
-                <p>Proyecto PWA - Laboratorios React</p>
-              </footer>
-            </div>
-    </BrowserRouter>
+    <NotasProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Inicio />} />
+            <Route path="notas" element={<Notas />} />
+            <Route path="notas/nueva" element={<NuevaNota />} />
+            <Route path="notas/:id" element={<DetalleNota />} />
+            <Route path="notas/:id/editar" element={<EditarNota />} />
+            <Route path="*" element={<NoEncontrada />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </NotasProvider>
   )
 }
 
