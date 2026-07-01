@@ -38,33 +38,38 @@ export default function ListaContactos() {
   const favoritosCount = contactos.filter((c) => c.favorito).length
 
   return (
-    <div>
+    <div className="component-card">
       <h3>Contactos</h3>
-      <div style={{ marginBottom: 8 }}>
+
+      <div className="buscador-grupo">
         <input
+          className="buscador-input"
           placeholder="Buscar por nombre o teléfono"
           value={nuevoBusqueda}
           onChange={(e) => setNuevoBusqueda(e.target.value)}
-          style={{ padding: 8, width: '60%', marginRight: 8 }}
         />
-        <BotonAccion texto={soloFavoritos ? 'Mostrar todos' : 'Mostrar solo favoritos'} variante="secundario" onClick={() => setSoloFavoritos((v) => !v)} />
+        <BotonAccion
+          texto={soloFavoritos ? 'Mostrar todos' : 'Mostrar solo favoritos'}
+          variante="secundario"
+          onClick={() => setSoloFavoritos((v) => !v)}
+        />
       </div>
 
-      <div style={{ marginBottom: 8, color: '#555' }}>
+      <div className="contactos-meta">
         Favoritos: {favoritosCount} / Total: {contactos.length} — Resultados: {filtrados.length}
       </div>
 
       {filtrados.length === 0 && <Alerta tipo="info" titulo="No se encontraron contactos">No se encontraron contactos</Alerta>}
 
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <ul className="contacto-lista">
         {filtrados.map((c) => (
-          <li key={c.id} style={{ padding: 8, borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div>
-              <div style={{ fontWeight: 600 }}>{c.nombre}</div>
-              <div style={{ color: '#555' }}>{c.telefono}</div>
+          <li key={c.id} className="contacto-item">
+            <div className="contacto-info">
+              <div className="contacto-nombre">{c.nombre}</div>
+              <div className="contacto-telefono">{c.telefono}</div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <button onClick={() => toggleFavorito(c.id)} style={{ fontSize: 20, background: 'transparent', border: 'none', cursor: 'pointer', marginRight: 12 }}>
+            <div className="contacto-acciones">
+              <button className="contacto-favorito" onClick={() => toggleFavorito(c.id)}>
                 {c.favorito ? '★' : '☆'}
               </button>
               <BotonAccion texto="Eliminar" variante="peligro" onClick={() => pedirEliminar(c)} />
@@ -73,8 +78,11 @@ export default function ListaContactos() {
         ))}
       </ul>
 
-      <Modal titulo={`¿Estás seguro de eliminar a ${modalEliminar.contacto ? modalEliminar.contacto.nombre : ''}?`} abierto={modalEliminar.abierto}>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Modal
+        titulo={`¿Estás seguro de eliminar a ${modalEliminar.contacto ? modalEliminar.contacto.nombre : ''}?`}
+        abierto={modalEliminar.abierto}
+      >
+        <div className="component-actions">
           <BotonAccion texto="Cancelar" variante="secundario" onClick={cancelarEliminar} />
           <BotonAccion texto="Eliminar" variante="peligro" onClick={confirmarEliminar} />
         </div>

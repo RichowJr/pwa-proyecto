@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import BotonAccion from './BotonAccion'
 import Alerta from './Alerta'
 
@@ -26,7 +26,7 @@ export default function FormularioEvento() {
     if (!form.titulo || form.titulo.trim().length < 5) err.titulo = 'El título debe tener al menos 5 caracteres.'
     if (!form.fecha) err.fecha = 'La fecha es obligatoria.'
     else {
-      const hoy = new Date();
+      const hoy = new Date()
       const f = new Date(form.fecha + 'T00:00:00')
       if (f < new Date(hoy.toDateString())) err.fecha = 'La fecha no puede ser pasada.'
     }
@@ -45,7 +45,6 @@ export default function FormularioEvento() {
     setErrores(err)
     if (Object.keys(err).length > 0) return
 
-    // éxito
     setEventos((prev) => [...prev, { ...form, id: Date.now() }])
     setConfirmVisible(true)
     setForm(initialForm)
@@ -54,30 +53,31 @@ export default function FormularioEvento() {
   }
 
   return (
-    <div>
-      <h3>Registro de Evento</h3>
+    <div className="component-card formulario-evento">
+      <h3>Registro de evento</h3>
+
       {confirmVisible && (
         <Alerta tipo="exito" titulo="Evento registrado">
-          <div>Evento "{eventos[eventos.length - 1]?.titulo}" registrado correctamente.</div>
+          <p>Evento "{eventos[eventos.length - 1]?.titulo}" registrado correctamente.</p>
         </Alerta>
       )}
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: 700 }}>
-        <div style={{ marginBottom: 8 }}>
-          <label>Título</label>
-          <input name="titulo" value={form.titulo} onChange={handleChange} style={{ width: '100%', padding: 8 }} />
+      <form className="formulario-grid" onSubmit={handleSubmit}>
+        <div className="campo">
+          <label htmlFor="titulo">Título</label>
+          <input id="titulo" className="input-text" name="titulo" value={form.titulo} onChange={handleChange} />
           {errores.titulo && <Alerta tipo="error" titulo="Error">{errores.titulo}</Alerta>}
         </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <label>Fecha</label>
-          <input type="date" name="fecha" value={form.fecha} onChange={handleChange} style={{ width: '100%', padding: 8 }} />
+        <div className="campo">
+          <label htmlFor="fecha">Fecha</label>
+          <input id="fecha" className="input-text" type="date" name="fecha" value={form.fecha} onChange={handleChange} />
           {errores.fecha && <Alerta tipo="error" titulo="Error">{errores.fecha}</Alerta>}
         </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <label>Categoría</label>
-          <select name="categoria" value={form.categoria} onChange={handleChange} style={{ width: '100%', padding: 8 }}>
+        <div className="campo">
+          <label htmlFor="categoria">Categoría</label>
+          <select id="categoria" className="input-select" name="categoria" value={form.categoria} onChange={handleChange}>
             <option value="">-- Selecciona --</option>
             <option value="conferencia">conferencia</option>
             <option value="taller">taller</option>
@@ -87,33 +87,32 @@ export default function FormularioEvento() {
           {errores.categoria && <Alerta tipo="error" titulo="Error">{errores.categoria}</Alerta>}
         </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <label>Descripción</label>
-          <textarea name="descripcion" value={form.descripcion} onChange={handleChange} style={{ width: '100%', padding: 8 }} />
+        <div className="campo">
+          <label htmlFor="descripcion">Descripción</label>
+          <textarea id="descripcion" className="input-textarea" name="descripcion" value={form.descripcion} onChange={handleChange} />
           {errores.descripcion && <Alerta tipo="error" titulo="Error">{errores.descripcion}</Alerta>}
         </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <label>
-            <input type="checkbox" name="esPublico" checked={form.esPublico} onChange={handleChange} /> Es público
-          </label>
+        <div className="campo checkbox-field">
+          <input id="esPublico" type="checkbox" name="esPublico" checked={form.esPublico} onChange={handleChange} />
+          <label htmlFor="esPublico">Es público</label>
         </div>
 
-        <div style={{ marginTop: 12 }}>
+        <div className="component-actions">
           <BotonAccion texto="Enviar" variante="primario" disabled={!puedeEnviar()} onClick={handleSubmit} />
         </div>
       </form>
 
-      <hr style={{ margin: '16px 0' }} />
-
-      <h4>Eventos registrados ({eventos.length})</h4>
-      <ul>
-        {eventos.map((ev) => (
-          <li key={ev.id} style={{ marginBottom: 8 }}>
-            <strong>{ev.titulo}</strong> — {ev.fecha} — {ev.categoria} — {ev.esPublico ? 'Público' : 'Privado'}
-          </li>
-        ))}
-      </ul>
+      <div className="eventos-registrados">
+        <h4>Eventos registrados ({eventos.length})</h4>
+        <ul className="lista-eventos">
+          {eventos.map((ev) => (
+            <li key={ev.id} className="evento-item">
+              <strong>{ev.titulo}</strong> — {ev.fecha} — {ev.categoria} — {ev.esPublico ? 'Público' : 'Privado'}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

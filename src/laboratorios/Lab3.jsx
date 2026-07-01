@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Alerta from '../components/Alerta'
 import Acordeon from '../components/Acordeon'
 import BotonAccion from '../components/BotonAccion'
@@ -6,9 +6,10 @@ import Modal from '../components/Modal'
 import Contador from '../components/Contador'
 import ListaContactos from '../components/ListaContactos'
 import FormularioEvento from '../components/FormularioEvento'
-import ModalDemo from './ModalDemo'
 
 export default function Laboratorio3() {
+  const [modalAbierto, setModalAbierto] = useState(false)
+
   return (
     <div className="laboratorio">
       <h1>Laboratorio 3 - Componentes reutilizables</h1>
@@ -50,13 +51,18 @@ export default function Laboratorio3() {
       </Acordeon>
 
       <Acordeon titulo="Ejercicio 2 — Modal, BotonAccion y Contador">
-        <div style={{ marginBottom: 12 }}>
-          <BotonAccion texto="Abrir modal" onClick={() => window.dispatchEvent(new CustomEvent('abrir-modal-demo'))} />
+        <div className="component-actions">
+          <BotonAccion texto="Abrir modal" onClick={() => setModalAbierto(true)} />
         </div>
-        <div style={{ marginBottom: 12 }}>
+        <div className="section-content">
           <Contador />
         </div>
-        <ModalDemo />
+        <Modal titulo="Demo de Modal" abierto={modalAbierto}>
+          <p>Este es un modal de demostración que se abre con el botón en la sección.</p>
+          <div className="component-actions">
+            <BotonAccion texto="Cerrar" variante="secundario" onClick={() => setModalAbierto(false)} />
+          </div>
+        </Modal>
       </Acordeon>
 
       <Acordeon titulo="Ejercicio 3 — Lista de contactos">

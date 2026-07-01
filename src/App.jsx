@@ -1,44 +1,52 @@
 import './App.css'
-import { useState, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home'
 import Laboratorio2 from './laboratorios/Lab2'
 import Laboratorio3 from './laboratorios/Lab3'
+import Laboratorio4 from './laboratorios/Lab4'
 
 function App() {
-  const [selected, setSelected] = useState(null)
-
   return (
-    <div className="app" style={{ padding: 20 }}>
-      {!selected && <Home onSelect={setSelected} />}
+    <BrowserRouter>
+            <div className="app">
+              <header className="app-header">
+                <div className="header-inner">
+                  <div>
+                    <h1 className="app-title">pwa-proyecto</h1>
+                    <p className="app-subtitle">Ejercicios de React organizados por laboratorios</p>
+                  </div>
+                  <nav className="app-nav">
+                    <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                      Inicio
+                    </NavLink>
+                    <NavLink to="/lab2" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                      Lab 2
+                    </NavLink>
+                    <NavLink to="/lab3" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                      Lab 3
+                    </NavLink>
+                    <NavLink to="/lab4" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                      Lab 4
+                    </NavLink>
+                  </nav>
+                </div>
+              </header>
 
-      {selected === 'lab2' && (
-        <div>
-          <button onClick={() => setSelected(null)} style={{ marginBottom: 12 }}>
-            ← Volver
-          </button>
-          <Laboratorio2 />
-        </div>
-      )}
+              <main className="app-main">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/lab2" element={<Laboratorio2 />} />
+                  <Route path="/lab3" element={<Laboratorio3 />} />
+                  <Route path="/lab4" element={<Laboratorio4 />} />
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </main>
 
-      {selected === 'lab3' && (
-        <div>
-          <button onClick={() => setSelected(null)} style={{ marginBottom: 12 }}>
-            ← Volver
-          </button>
-                <Laboratorio3 />
-              </div>
-            )}
-
-            {selected && selected !== 'lab2' && selected !== 'lab3' && (
-              <div>
-                <button onClick={() => setSelected(null)} style={{ marginBottom: 12 }}>
-                  ← Volver
-                </button>
-                <h2>{selected.toUpperCase()} - Página aún no implementada</h2>
-                <p>Este laboratorio todavía no está disponible en la interfaz. Puedes implementarlo y volver a intentarlo.</p>
-              </div>
-            )}
-    </div>
+              <footer className="app-footer">
+                <p>Proyecto PWA - Laboratorios React</p>
+              </footer>
+            </div>
+    </BrowserRouter>
   )
 }
 

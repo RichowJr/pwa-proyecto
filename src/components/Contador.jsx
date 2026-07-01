@@ -11,10 +11,10 @@ export default function Contador() {
   const reiniciar = () => setValor(() => 0)
 
   return (
-    <div>
-      <h3>Contador: {valor}</h3>
-
-      <div style={{ marginBottom: 12 }}>
+    <div className="component-card">
+      <h3>Contador</h3>
+      <p className="contador-valor">{valor}</p>
+      <div className="component-actions">
         <BotonAccion texto="Decrementar" variante="secundario" disabled={valor === 0} onClick={decrementar} />
         <BotonAccion texto="Incrementar" variante="primario" onClick={incrementar} />
         <BotonAccion texto="Incrementar +5" variante="primario" onClick={incrementar5} />

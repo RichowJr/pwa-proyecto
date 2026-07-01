@@ -4,27 +4,13 @@ export default function Acordeon({ titulo, children, defaultExpanded = false }) 
   const [expandido, setExpandido] = useState(defaultExpanded)
 
   return (
-    <div style={{ border: '1px solid #ddd', borderRadius: 8, marginBottom: 12 }}>
-      <button
-        onClick={() => setExpandido((v) => !v)}
-        style={{
-          width: '100%',
-          textAlign: 'left',
-          padding: '10px 12px',
-          background: 'transparent',
-          border: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          cursor: 'pointer',
-          fontSize: 16
-        }}
-      >
-        <span style={{ width: 20 }}>{expandido ? '▼' : '▶'}</span>
-        <span style={{ fontWeight: 600 }}>{titulo}</span>
+    <div className="acordeon">
+      <button className="acordeon-boton" type="button" onClick={() => setExpandido((v) => !v)}>
+        <span className="acordeon-icon">{expandido ? '▼' : '▶'}</span>
+        <span>{titulo}</span>
       </button>
-
-      {expandido && <div style={{ padding: 12, borderTop: '1px solid #eee' }}>{children}</div>}
+      {expandido && <div className="acordeon-contenido">{children}</div>}
     </div>
   )
 }
+
