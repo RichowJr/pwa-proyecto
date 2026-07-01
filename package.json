@@ -1,12 +1,21 @@
 {
-  "name": "laboratorio-1",
+  "name": "pwa-proyecto",
   "packageManager": "yarn@4.15.0",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "saludo": "echo Hola desde el script",
     "info-node": "node --version",
     "limpiar": "echo Limpiando el proyecto..."
   },
   "devDependencies": {
-    "prettier": "^3.8.3"
+    "@vitejs/plugin-react": "^6.0.3",
+    "prettier": "^3.8.3",
+    "vite": "^8.1.2"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   }
 }
