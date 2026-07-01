@@ -3,15 +3,14 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useNotas } from '../context/NotasContext'
 
 export default function Layout() {
-  const { notas, notificacion, cerrar } = useNotas()
-  const totalNotas = notas.length
+  const { notificacion, cerrar } = useNotas()
 
   return (
     <div className="layout-shell">
       <header className="layout-header">
         <div>
-          <h1>MisNotas</h1>
-          <p className="layout-tagline">Organiza tus ideas, tareas y recordatorios en un solo lugar.</p>
+          <h1>Laboratorios React</h1>
+          <p className="layout-tagline">Explora ejercicios y componentes creados en este proyecto.</p>
         </div>
         <nav className="layout-nav">
           <NavLink to="/" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')} end>
@@ -30,7 +29,6 @@ export default function Layout() {
             Laboratorio 4
           </NavLink>
         </nav>
-        <div className="layout-indicator">Total de notas: {totalNotas}</div>
       </header>
 
       {notificacion && (
@@ -46,7 +44,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="layout-footer">© 2026 MisNotas</footer>
+      <footer className="layout-footer">© 2026 pwa-proyecto</footer>
     </div>
   )
 }
