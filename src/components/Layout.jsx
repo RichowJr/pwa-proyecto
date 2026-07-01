@@ -20,8 +20,14 @@ export default function Layout() {
           <NavLink to="/notas" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')}>
             Notas
           </NavLink>
-          <NavLink to="/notas/nueva" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')}>
-            Nueva nota
+          <NavLink to="/lab2" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')}>
+            Laboratorio 2
+          </NavLink>
+          <NavLink to="/lab3" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')}>
+            Laboratorio 3
+          </NavLink>
+          <NavLink to="/lab4" className={({ isActive }) => (isActive ? 'layout-link active' : 'layout-link')}>
+            Laboratorio 4
           </NavLink>
         </nav>
         <div className="layout-indicator">Total de notas: {totalNotas}</div>

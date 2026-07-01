@@ -8,6 +8,11 @@ export default function Home() {
       <p>Selecciona un laboratorio para ver sus ejercicios:</p>
       <ul className="home-list">
         <li>
+          <Link className="home-link" to="/notas">
+            MisNotas — Aplicación de notas con Context, filtros y rutas
+          </Link>
+        </li>
+        <li>
           <Link className="home-link" to="/lab2">
             Laboratorio 2 — Expresiones, Condicionales y Listas
           </Link>
