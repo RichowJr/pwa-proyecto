@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-export default function Acordeon({ titulo, children }) {
-  const [expandido, setExpandido] = useState(false)
+export default function Acordeon({ titulo, children, defaultExpanded = false }) {
+  const [expandido, setExpandido] = useState(defaultExpanded)
 
   return (
     <div style={{ border: '1px solid #ddd', borderRadius: 8, marginBottom: 12 }}>
